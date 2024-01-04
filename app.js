@@ -12,6 +12,9 @@ const bodyParser = require("body-parser");
 const usersRoute = require("./routes/users");
 const expenseRoute = require("./routes/expense");
 const sequelize = require("./database");
+const categoryRouter = require("./routes/category");
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require("./swaggerConfig.js");
 // var logger = require('morgan');
 
 // app.use(logger('common', {
@@ -31,8 +34,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 // app.use(morgan('dev'))
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/users", usersRoute);
 app.use("/expense", expenseRoute);
+app.use("/category" , categoryRouter);
 
 app.use((req, res, next) => {
   res.status(200).json({

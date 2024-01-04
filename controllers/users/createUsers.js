@@ -1,5 +1,5 @@
 const db = require("../../database");
-const User = require("../../models/users");
+const User = require("../../models/sql/users");
 const bcrypt = require("bcrypt");
 
 exports.createUser = async (req, res, next) => {

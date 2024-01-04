@@ -6,6 +6,7 @@ const db = new Sequelize("expense-manager", "postgres", "test", {
   dialect: "postgres",
   define: {
     timestamps: false,
+    freezeTableName: true
   },
 });
 

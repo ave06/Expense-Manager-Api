@@ -1,5 +1,8 @@
 const Sequelize = require("sequelize");
-const db = require("../database");
+const db = require("../../database");
+const user = require("../sql/users");
+const category = require("./category");
+const direction = require('./direction');
 
 const expense = db.define("expenses", {
   id: {
@@ -37,6 +40,12 @@ const expense = db.define("expenses", {
     references: "direction",
     referencesKey: "id",
   },
+  description: {
+    type: Sequelize.STRING,
+  }
 });
 
+expense.belongsTo(user, { foreignKey: 'userid' });
+expense.belongsTo(category, { foreignKey: 'categoryid' });
+expense.belongsTo(direction, {foreignKey: 'directionid'});
 module.exports = expense;

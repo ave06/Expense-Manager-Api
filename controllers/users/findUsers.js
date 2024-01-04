@@ -1,5 +1,5 @@
 const db = require("../../database");
-const User = require("../../models/users");
+const User = require("../../models/sql/users");
 
 exports.findUsers = async (req, res, next) => {
   const user = await User.findOne({ where: { username: req.params.username } });

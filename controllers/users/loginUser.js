@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const db = require("../../database");
-const User = require("../../models/users");
+const User = require("../../models/sql/users");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
 
@@ -36,10 +36,12 @@ exports.loginUser = async (req, res, next) => {
         }
       );
 
-      console.log("login!");
+      console.log("login!"+user.name+user.id);
       return res.status(200).json({
         message: "login successfull",
         token: token,
+        username: user.name,
+        userid: user.id
       });
     }
 
